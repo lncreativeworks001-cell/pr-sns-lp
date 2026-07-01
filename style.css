@@ -62,19 +62,21 @@ p {
 }
 
 h1,
-h2 {
+h2,
+h3 {
   font-family: var(--serif);
   font-weight: 600;
-  line-height: 1.25;
+  line-height: 1.35;
 }
 
 h1 {
-  font-size: clamp(3rem, 8vw, 7.6rem);
+  font-size: clamp(2.7rem, 5.8vw, 5.7rem);
+  font-weight: 500;
   letter-spacing: 0;
 }
 
 h2 {
-  font-size: clamp(2rem, 4vw, 4rem);
+  font-size: clamp(1.75rem, 3vw, 3.2rem);
   letter-spacing: 0;
 }
 
@@ -128,8 +130,10 @@ h3 {
   height: 54px;
   border: 1px solid currentColor;
   border-radius: 999px;
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
 }
 
 .brand-text {
@@ -247,8 +251,10 @@ body.nav-open .nav-toggle span:last-child {
   min-height: 56px;
   padding: 0 28px;
   border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 0.8rem;
   font-weight: 700;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.12em;
   transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
 }
 
@@ -358,14 +364,15 @@ body.nav-open .nav-toggle span:last-child {
 
 .number {
   color: var(--rose-deep);
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: clamp(1.4rem, 2vw, 2rem);
+  font-weight: 700;
 }
 
 .capability-item p,
 .flow-list p,
 .price-card p,
-.policy-list p,
+.policy-list li,
 .faq-list p,
 .cta-content p {
   color: var(--soft-ink);
@@ -380,22 +387,14 @@ body.nav-open .nav-toggle span:last-child {
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: clamp(18px, 2.6vw, 34px);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 4vw, 48px);
+  max-width: 980px;
+  margin: 0 auto;
 }
 
 .work-card {
-  grid-column: span 3;
   margin: 0;
-}
-
-.work-card.feature {
-  grid-column: span 4;
-}
-
-.work-card:nth-child(2) {
-  grid-column: span 2;
-  align-self: end;
 }
 
 .work-card img {
@@ -413,8 +412,9 @@ body.nav-open .nav-toggle span:last-child {
 
 .work-card figcaption span {
   color: var(--rose-deep);
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 0.9rem;
+  font-weight: 700;
 }
 
 .work-card figcaption p {
@@ -431,7 +431,7 @@ body.nav-open .nav-toggle span:last-child {
 
 .price-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px;
   margin-top: clamp(40px, 6vw, 70px);
 }
@@ -450,8 +450,15 @@ body.nav-open .nav-toggle span:last-child {
   background: var(--ink);
 }
 
-.price-card.featured p {
+.price-card.featured p,
+.price-card.soft-featured p {
   color: rgba(255, 253, 249, 0.78);
+}
+
+.price-card.soft-featured {
+  color: var(--white);
+  background: #342d2a;
+  border-color: rgba(255, 253, 249, 0.16);
 }
 
 .plan {
@@ -466,14 +473,19 @@ body.nav-open .nav-toggle span:last-child {
   color: var(--rose);
 }
 
+.price-card.soft-featured .plan {
+  color: var(--rose);
+}
+
 .price {
   color: var(--ink);
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: clamp(1.8rem, 3vw, 2.6rem);
   font-weight: 600;
 }
 
-.price-card.featured .price {
+.price-card.featured .price,
+.price-card.soft-featured .price {
   color: var(--white);
 }
 
@@ -500,7 +512,8 @@ body.nav-open .nav-toggle span:last-child {
 
 .flow-list span {
   color: var(--rose-deep);
-  font-family: var(--serif);
+  font-family: var(--sans);
+  font-weight: 700;
 }
 
 /* ==============================
@@ -510,17 +523,40 @@ body.nav-open .nav-toggle span:last-child {
   background: var(--ivory);
 }
 
-.policy-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1px;
-  background: var(--line);
+.policy .section-heading {
+  max-width: 980px;
 }
 
-.policy-list p {
-  min-height: 140px;
-  padding: clamp(22px, 3vw, 34px);
-  background: var(--ivory);
+.policy .section-heading h2 {
+  font-size: clamp(1.45rem, 2.5vw, 2.3rem);
+  white-space: nowrap;
+}
+
+.policy-list {
+  display: grid;
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  background: transparent;
+}
+
+.policy-list li {
+  position: relative;
+  padding-left: 24px;
+  color: var(--soft-ink);
+}
+
+.policy-list li::before {
+  position: absolute;
+  top: 0.82em;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--rose-deep);
+  content: "";
 }
 
 .faq {
@@ -569,7 +605,7 @@ body.nav-open .nav-toggle span:last-child {
 
 .cta {
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1.28fr);
   gap: clamp(28px, 6vw, 86px);
   align-items: center;
   background: #211d1c;
@@ -578,9 +614,11 @@ body.nav-open .nav-toggle span:last-child {
 
 .cta-visual img {
   width: 100%;
-  max-height: 720px;
+  max-width: 420px;
+  max-height: 560px;
   aspect-ratio: 4 / 5;
   object-fit: cover;
+  margin: 0 auto;
 }
 
 .cta-content {
@@ -687,19 +725,8 @@ body.nav-open .nav-toggle span:last-child {
     grid-template-columns: 1fr;
   }
 
-  .price-grid,
-  .policy-list {
+  .price-grid {
     grid-template-columns: 1fr;
-  }
-
-  .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .work-card,
-  .work-card.feature,
-  .work-card:nth-child(2) {
-    grid-column: span 1;
   }
 
   .cta {
@@ -741,7 +768,7 @@ body.nav-open .nav-toggle span:last-child {
   }
 
   h1 {
-    font-size: clamp(2.8rem, 14vw, 4.5rem);
+    font-size: clamp(2rem, 8.5vw, 2.8rem);
   }
 
   .hero-lead {
@@ -767,12 +794,17 @@ body.nav-open .nav-toggle span:last-child {
   }
 
   .gallery-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 14px;
   }
 
   .price-card,
-  .policy-list p {
+  .policy-list li {
     min-height: auto;
+  }
+
+  .policy .section-heading h2 {
+    font-size: clamp(1.25rem, 5.2vw, 1.85rem);
   }
 
   .site-footer {
